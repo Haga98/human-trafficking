@@ -19,7 +19,7 @@ export default function Home() {
     <div
       className="relative bg-[#F7F7F7] h-screen w-full"
       style={{
-        backgroundImage: `url("/background.png")`,
+        backgroundImage: `url("background.png")`,
         backgroundSize: "150%",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "-40% bottom ",
