@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
+let envImageUnoptimize = process.env.NODE_ENV !== "production" ? false : true
 const nextConfig = {
-  output: 'export',
+  output:  process.env.NODE_ENV !== "production" ? undefined: "export",
   reactStrictMode: true,
   basePath: '/human-trafficking',
+  images: {
+    unoptimized: envImageUnoptimize,
+  },
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   // trailingSlash: true,
  
