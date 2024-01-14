@@ -19,12 +19,13 @@ export default function Home() {
     <div
       className="relative bg-[#F7F7F7] h-screen w-full"
       style={{
-        backgroundImage: `url("background.png")`,
-        backgroundSize: "150%",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "-40% bottom ",
+        backgroundImage: `url("background.png") , url("bullets.png")`,
+        backgroundSize: "150%, 80%",
+        backgroundRepeat: "no-repeat, no-repeat",
+        backgroundPosition: "-40% bottom,  -20% bottom ",
       }}
     >
+      
       <div className=" absolute top-10 left-0 right-0 pl-6 pr-2 py-4">
         <span className="text-[28px] font-bold text-[#243439] italic">
           Don&apos;t close your eyes to <br />
