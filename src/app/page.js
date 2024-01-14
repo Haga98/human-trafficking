@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
 export default function Home() {
+  
   const [show, setShow] = React.useState(false);
   const [showInput, setShowInput] = React.useState(true);
+  const [msg, setMsg] = React.useState("")
   const handleShow = () => {
     setShow(!show);
   };
@@ -11,7 +13,38 @@ export default function Home() {
     window.open(url, "_blank");
   };
 
+  const postDataToGoogleForm = async (formData) => {
+    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSfx2pF3buh9zu8xZr_uNG4Sn995k26npOhQMzI1nUxiE-wqiA/formResponse"
+    try {
+      await fetch(formUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(formData).toString(),
+      });
+  
+      console.log('Data submitted successfully');
+    } catch (error) {
+      console.error('Error submitting data:', error);
+    }
+
+  };
+
+  
+
+  const handleMessage = (e) => {
+      e.preventDefault()
+      console.log(e.target.value)
+      setMsg(e.target.value)
+  }
+
   const sendMessage = async () => {
+    const dataToSubmit = {
+      "entry.2138559183": msg
+    }
+    await postDataToGoogleForm(dataToSubmit)
     setShowInput(false);
   };
 
@@ -91,10 +124,12 @@ export default function Home() {
                     className=" resize-none w-full p-3 rounded-md outline outline-2 border-2 border-white -outline-offset-4 outline-[#EDE5DE] placeholder:italic placeholder:text-[12px]"
                     rows={3}
                     placeholder="Type here..."
+                    onChange={handleMessage}
                   />
                   <button
                     onClick={() => sendMessage()}
-                    className="w-full flex items-center justify-center mt-2 rounded-md bg-[#243439] py-3 fill-white"
+                    className="w-full flex items-center justify-center mt-2 rounded-md bg-[#243439] py-3 fill-white disabled:opacity-60"
+                    disabled={msg === ""}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
